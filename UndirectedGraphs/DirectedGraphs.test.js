@@ -1,6 +1,7 @@
 const DepthFirstPaths = require('./DepthFirstPaths');
 const Graph = require('./Graph');
 const BreadthFirstPaths = require('./BreadthFirstPaths');
+const CC = require('./CC');
 
 describe('Directed Graphs', () => {
   var g;
@@ -42,5 +43,21 @@ describe('Directed Graphs', () => {
     expect(path.pathTo(3)).toEqual([0, 5, 3]);
     expect(path.pathTo(4)).toEqual([0, 6, 4]);
     expect(path.pathTo(9)).toBe(null);
+  });
+
+  test('connected components', () => {
+    var ConnectedComponents = CC(g);
+    expect(ConnectedComponents.numberOfComponents()).toEqual(3);
+    expect(ConnectedComponents.componentInId(0)).toEqual(
+      expect.arrayContaining([0, 1, 2, 3, 4, 5, 6])
+    );
+
+    expect(ConnectedComponents.componentInId(1)).toEqual(
+      expect.arrayContaining([7, 8])
+    );
+
+    expect(ConnectedComponents.componentInId(2)).toEqual(
+      expect.arrayContaining([9, 10, 11, 12])
+    );
   });
 });
