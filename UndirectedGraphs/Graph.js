@@ -30,6 +30,11 @@ function Graph(V) {
     return adj[v];
   }
 
+  function getAdjValues(v) {
+    return adj[v].values();
+  }
+
+  // returns the degree of vertex v
   function degree(v) {
     return adj[v].size();
   }
@@ -39,7 +44,8 @@ function Graph(V) {
     getEdges,
     addEdge,
     getAdj,
-    degree
+    degree,
+    getAdjValues
   };
 }
 
