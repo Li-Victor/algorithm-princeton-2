@@ -3,9 +3,9 @@
 
 // computes a path between source vertex s and every other vertex in graph G
 function DepthFirstPaths(G, s) {
-  var s = s;
-  var marked = new Array(G.getVertices());
-  var edgeTo = new Array(G.getVertices());
+  var s = s; // source vertex
+  var marked = new Array(G.getVertices()); //marked [v] = is there an s-v path?
+  var edgeTo = new Array(G.getVertices()); // edgeTo[v] = last edge on s-v path
   dfs(G, s);
 
   // depth first search from v
