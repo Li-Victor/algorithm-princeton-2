@@ -1,32 +1,33 @@
 const DiGraph = require('./DiGraph');
+const DirectedDFS = require('./DirectedDFS');
 
 describe('Directed Graph', () => {
+  var g = DiGraph(13);
+
+  g.addEdge(4, 2);
+  g.addEdge(2, 3);
+  g.addEdge(3, 2);
+  g.addEdge(6, 0);
+  g.addEdge(0, 1);
+  g.addEdge(2, 0);
+  g.addEdge(11, 12);
+  g.addEdge(12, 9);
+  g.addEdge(9, 10);
+  g.addEdge(9, 11);
+  g.addEdge(7, 9);
+  g.addEdge(10, 12);
+  g.addEdge(11, 4);
+  g.addEdge(4, 3);
+  g.addEdge(3, 5);
+  g.addEdge(6, 8);
+  g.addEdge(8, 6);
+  g.addEdge(5, 4);
+  g.addEdge(0, 5);
+  g.addEdge(6, 4);
+  g.addEdge(6, 9);
+  g.addEdge(7, 6);
+
   test('implementation', () => {
-    var g = DiGraph(13);
-
-    g.addEdge(4, 2);
-    g.addEdge(2, 3);
-    g.addEdge(3, 2);
-    g.addEdge(6, 0);
-    g.addEdge(0, 1);
-    g.addEdge(2, 0);
-    g.addEdge(11, 12);
-    g.addEdge(12, 9);
-    g.addEdge(9, 10);
-    g.addEdge(9, 11);
-    g.addEdge(7, 9);
-    g.addEdge(10, 12);
-    g.addEdge(11, 4);
-    g.addEdge(4, 3);
-    g.addEdge(3, 5);
-    g.addEdge(6, 8);
-    g.addEdge(8, 6);
-    g.addEdge(5, 4);
-    g.addEdge(0, 5);
-    g.addEdge(6, 4);
-    g.addEdge(6, 9);
-    g.addEdge(7, 6);
-
     expect(g.getVertices()).toBe(13);
     expect(g.getEdges()).toBe(22);
 
@@ -118,5 +119,15 @@ describe('Directed Graph', () => {
     expect(r.getAdjValues(10)).toEqual(expect.arrayContaining([9]));
     expect(r.getAdjValues(11)).toEqual(expect.arrayContaining([9]));
     expect(r.getAdjValues(12)).toEqual(expect.arrayContaining([10, 11]));
+  });
+
+  test('Depth First Search', () => {
+    var dfs = DirectedDFS(g, 1);
+    expect(dfs.countVertices()).toBe(1);
+    expect(dfs.printReachableVertices()).toEqual([1]);
+
+    dfs = DirectedDFS(g, 2);
+    expect(dfs.countVertices()).toBe(6);
+    expect(dfs.printReachableVertices()).toEqual([0, 1, 2, 3, 4, 5]);
   });
 });
