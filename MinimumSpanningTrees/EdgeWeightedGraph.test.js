@@ -58,6 +58,7 @@ describe('Edge Weighted Graph', () => {
       '3-6: 0.52',
       '6-2: 0.4'
     ]);
+
     expect(g.getAdjEdges(7)).toEqual([
       '2-7: 0.34',
       '1-7: 0.19',
@@ -65,5 +66,10 @@ describe('Edge Weighted Graph', () => {
       '5-7: 0.28',
       '4-7: 0.37'
     ]);
+  });
+
+  test('All edges', () => {
+    var e = g.edges();
+    expect(e.length).toBe(16);
   });
 });

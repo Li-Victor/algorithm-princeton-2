@@ -25,7 +25,7 @@ function Edge(v, w, weight) {
 
   // compares two edges by weight
   function compare(that) {
-    return getWeight - that.getWeight();
+    return getWeight() - that.getWeight();
   }
 
   function printEdge() {

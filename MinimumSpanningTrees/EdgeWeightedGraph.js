@@ -44,12 +44,37 @@ function EdgeWeightedGraph(V) {
     return adj[v].size();
   }
 
+  // returns the edges incident on vertex v
+  function getAdj(v) {
+    return adj[v].values();
+  }
+
+  // returns all edges in this edge-weighted graph.
+  function edges() {
+    var list = [];
+    for (var v = 0; v < V; v++) {
+      var selfLoops = 0;
+      for (var edge of getAdj(v)) {
+        if (edge.other(v) > v) {
+          list.push(edge);
+        } else if (edge.other(v) === v) {
+          // add only one copy of each self loop (self loops will be consecutive)
+          if (selfLoops % 2 === 0) list.push(edge);
+          selfLoops++;
+        }
+      }
+    }
+
+    return list;
+  }
+
   return {
     getVertices,
     getEdge,
     addEdge,
     getAdjEdges,
-    degree
+    degree,
+    edges
   };
 }
 
