@@ -6,8 +6,8 @@ const MinPQ = require('./MinPQ');
 
 // compute a minimum spanning tree of an edge-weighted graph.
 function KruskalMST(G) {
-  var mst = [];
-  var weight = 0;
+  var mst = []; // edges in MST
+  var weight = 0; // weight of MST
   var pq = MinPQ();
   for (var edge of G.edges()) {
     pq.insert(edge);

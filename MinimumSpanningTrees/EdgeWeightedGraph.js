@@ -73,6 +73,7 @@ function EdgeWeightedGraph(V) {
     getEdge,
     addEdge,
     getAdjEdges,
+    getAdj,
     degree,
     edges
   };

@@ -1,4 +1,5 @@
 const KruskalMST = require('./KruskalMST');
+const LazyPrimMST = require('./LazyPrimMST');
 const EdgeWeightedGraph = require('./EdgeWeightedGraph');
 const Edge = require('./Edge');
 
@@ -22,8 +23,7 @@ describe('Find Minimum Spanning Tree', () => {
   g.addEdge(Edge(6, 0, 0.58));
   g.addEdge(Edge(6, 4, 0.93));
 
-  test('Kruskal implementation', () => {
-    var mst = KruskalMST(g);
+  function testMST(mst) {
     expect(mst.getWeight()).toBe(1.81);
 
     expect(mst.edges()).toEqual(
@@ -37,5 +37,15 @@ describe('Find Minimum Spanning Tree', () => {
         '6-2: 0.4'
       ])
     );
+  }
+
+  test('Kruskal implementation', () => {
+    var mst = KruskalMST(g);
+    testMST(mst);
+  });
+
+  test('Lazy Prim implementation', () => {
+    var mst = LazyPrimMST(g);
+    testMST(mst);
   });
 });
